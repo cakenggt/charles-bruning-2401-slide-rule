@@ -34,5 +34,5 @@ module squareRoot(
 }
 
 //multiplication(2, 6);
-//log(3);
-squareRoot(5);
+log(3);
+//squareRoot(5);

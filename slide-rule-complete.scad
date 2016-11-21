@@ -9,8 +9,8 @@ module slideRule(
     totalHeight=5,
     sliderTY=6,
     sliderTZ=2,
-    minorLength=3,
-    majorLength=6,
+    minorLength=1,
+    majorLength=3,
     depth=0.5,
     sliderDispLength=14,
     sliderTotalLength=16,
@@ -25,7 +25,8 @@ module slideRule(
     cursorWidth=18,
     cursorVal=1,
     sliderVal=1,
-    assembled=false
+    assembled=false,
+    textPadding=0.6
 ){
     scaleWidth=width-(2*frontSliderXOffset);
     
@@ -49,13 +50,15 @@ module slideRule(
             cutoutWidth=cutoutWidth
         );
         translate([frontSliderXOffset, sliderTY+(sliderTotalLength-sliderDispLength)/2, totalHeight]){
-            scaleABCD(
+            scaleABCDCIK(
                 width=scaleWidth,
                 minorLength=minorLength,
                 majorLength=majorLength,
                 depth=depth,
                 majorTextSize=majorTextSize,
-                minorTextSize=minorTextSize
+                minorTextSize=minorTextSize,
+                length=sliderDispLength,
+                textPadding=textPadding
             );
         }
     }
@@ -74,24 +77,28 @@ module slideRule(
                 );
             }
             translate([frontSliderXOffset, separation+((sliderTotalLength-sliderDispLength)/2), sliderHeight]){
-                scaleABCD(
+                scaleABCDCIK(
                     width=scaleWidth,
                     minorLength=minorLength,
                     majorLength=majorLength,
                     depth=depth,
                     majorTextSize=majorTextSize,
-                    minorTextSize=minorTextSize
+                    minorTextSize=minorTextSize,
+                    length=sliderDispLength,
+                    textPadding=textPadding
                 );
             }
         }
-        translate([21, separation+(sliderTotalLength/2)+(majorLength/2), 0]){
+        translate([21, separation+sliderTotalLength-((sliderTotalLength-sliderDispLength)/2)+0.001, 0]){
             rotate([180,0,0]){
-                scaleL(
+                scaleSLT(
                     width=scaleWidth,
                     minorLength=minorLength,
                     majorLength=majorLength,
                     depth=depth,
-                    textSize=majorTextSize
+                    textSize=majorTextSize,
+                    length=sliderDispLength+0.002,
+                    textPadding=textPadding
                 );
             }
         }
